@@ -61,10 +61,7 @@ public static Boolean valid=true;
 				        
 
 				        DBCursor docs = user.find(findQuery);
-				        DBCursor cursor = user.find();
-				        while(cursor.hasNext()) {
-				            System.out.println(cursor.next());
-				        }
+				        
 				      
 					    	
 			            	/**** Insert ****/
@@ -75,6 +72,12 @@ public static Boolean valid=true;
 								    	
 					    	
 					    	user.insert(document);
+					    	DBCursor cursor = user.find();
+					    	cursor.sort(new BasicDBObject("Score ", -1));
+					        while(cursor.hasNext()) {
+					            System.out.println(cursor.next());
+					        }
+					    	
 			            	return "success";
 			            
 			
