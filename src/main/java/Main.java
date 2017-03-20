@@ -61,6 +61,10 @@ public static Boolean valid=true;
 				        
 
 				        DBCursor docs = user.find(findQuery);
+				        DBCursor cursor = user.find();
+				        while(cursor.hasNext()) {
+				            System.out.println(cursor.next());
+				        }
 				      
 					    	
 			            	/**** Insert ****/
