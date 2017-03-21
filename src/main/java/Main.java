@@ -72,11 +72,7 @@ public static Boolean valid=true;
 								    	
 					    	
 					    	user.insert(document);
-					    	DBCursor cursor = user.find();
-					    	cursor.sort(new BasicDBObject("Score ", -1));
-					        while(cursor.hasNext()) {
-					            System.out.println(cursor.next());
-					        }
+					    	
 					    	
 			            	return "success";
 			            
@@ -90,6 +86,35 @@ public static Boolean valid=true;
 			return "";
 			
 			
+		});
+		
+		get("/GetScores", (request, response) -> {
+					
+			
+			
+			try {
+
+           	 ArrayList<BasicDBObject> obj = new ArrayList<BasicDBObject>();		        
+		        BasicDBObject findQuery = new BasicDBObject();
+		       
+		        DBCursor docs = user.find();
+		    	docs.sort(new BasicDBObject("Score ", 1));
+		        while(docs.hasNext()) {
+		        	DBObject doc = docs.next();
+		            obj.add((BasicDBObject) doc); 
+		        }		        
+		        
+		        System.out.println(obj);
+		        return obj ;
+		           
+		        }
+		        catch (MongoException e) {
+		    	e.printStackTrace();
+		        }
+		    
+	
+	return "";
+	
 		});
 	}
 }
