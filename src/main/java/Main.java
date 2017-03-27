@@ -98,7 +98,7 @@ public static Boolean valid=true;
 		        BasicDBObject findQuery = new BasicDBObject();
 		       
 		        DBCursor docs = user.find();
-		    	docs.sort(new BasicDBObject("Score", 1));
+		    	docs.sort(new BasicDBObject("Score", -1));
 		        while(docs.hasNext()) {
 		        	DBObject doc = docs.next();
 		            obj.add((BasicDBObject) doc); 
